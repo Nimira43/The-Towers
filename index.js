@@ -52,7 +52,7 @@ let hearts = 10
 spawnEnemies(enemyCount)
 
 function animate() {
-    requestAnimationFrame(animate)
+    const animationId = requestAnimationFrame(animate)
 
     c.drawImage(image, 0, 0)
     
@@ -62,7 +62,10 @@ function animate() {
         if (enemy.position.x > canvas.width) {
             hearts -= 1
             enemies.splice(i, 1)
-            if (hearts === 0) console.log('gameover')
+            if (hearts === 0) {
+                console.log('gameover')
+                cancelAnimationFrame(animationId)
+            }
         }
     }
     
